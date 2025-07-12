@@ -14,9 +14,10 @@ public class Main {
         Connection con = DriverManager.getConnection(url, uname, password);
         Statement st = con.createStatement();
         ResultSet rs = st.executeQuery(query);
-        rs.next();
-        String name = rs.getString("name");
-        System.out.println(name);
+        while (rs.next()) {
+            String name = rs.getInt(1) + ":" + rs.getString(2);
+            System.out.println(name);
+        }
         st.close();
         con.close();
     }
